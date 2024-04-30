@@ -16,12 +16,12 @@ import { metadata } from "@/src/data/meta.data"
   <link rel="apple-touch-icon" href={metadata.logo} />
   <link rel="apple-touch-icon-precomposed" href={metadata.logo} />
   <link rel="shortcut icon" href={metadata.logo} />
-  <!-- <script is:inline>
+  <script is:inline>
     window.onload = function () {
       const loginData = document.getElementById("loginInput").value;
-      if (loginData == "false") {
-        window.location.href = "/login";
+      if (loginData == "false" && window.location.pathname !== "/" && window.location.pathname !== "/login") {
+        window.location.href = "/";
       }
     };
-  </script> -->
+  </script>
 </head>
