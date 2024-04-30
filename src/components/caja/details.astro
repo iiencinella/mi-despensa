@@ -1,0 +1,95 @@
+<div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+  <!-- Modal content -->
+  <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+    <!-- Modal header -->
+    <div
+      class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600"
+    >
+      <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+        Detalle del producto
+      </h3>
+    </div>
+    <!-- Modal body -->
+    <form action="#">
+      <div class="grid gap-4 mb-4 sm:grid-cols-2">
+        <div class="sm:col-span-2">
+          <label
+            for="setStock"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Producto</label
+          >
+          <div class="flex items-center justify-center w-full gap-4">
+            <input
+              type="text"
+              name="setStock"
+              id="setStock"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Nombre ó código"
+              required=""
+            />
+            <button
+              type="submit"
+              class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Buscar
+            </button>
+          </div>
+        </div>
+        <div>
+          <label
+            for="price"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Precio Unitario</label
+          >
+          <input
+            type="number"
+            name="price"
+            id="price"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="$"
+            required=""
+          />
+        </div>
+        <div class="sm:col-span-2">
+          <label
+            for="setStock"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Cantidad</label
+          >
+          <div class="flex items-center justify-center w-full gap-4">
+            <input
+              type="text"
+              name="setStock"
+              id="setStock"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="0"
+              required=""
+            />
+            <button
+              type="submit"
+              class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              <svg
+                class="w-6 h-6 dark:text-gray-800 text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7h-1M8 7h-.688M13 5v4m-2-2h4"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

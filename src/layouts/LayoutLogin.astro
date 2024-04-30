@@ -1,0 +1,21 @@
+---
+import Head from "../components/shared/head.astro";
+import hasProfile from "@utils/profile";
+import Navbar from "../components/shared/navbar.astro";
+import Footer from "../components/shared/footer.astro";
+
+const cookie: string = `${Astro.cookies.get(import.meta.env.COOKIE_NAME || "_Security_Login_")?.value}`;
+const d = hasProfile(cookie);
+let login: string = `${d.success}`;
+---
+
+<!doctype html>
+<html>
+  <Head />
+  <body>
+    <Navbar login={d.success} role={d.role} />
+    <input type="hidden" name="loginInput" id="loginInput" value={login} />
+    <slot />
+    <Footer />
+  </body>
+</html>

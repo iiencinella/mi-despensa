@@ -1,0 +1,98 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Button from "@components/LogoutButton.astro";
+import hasProfile from "@utils/profile";
+
+const cookie: string = `${Astro.cookies.get(import.meta.env.COOKIE_NAME || "_Security_Login_")?.value}`;
+const username = hasProfile(cookie).username as string;
+---
+
+<Layout>
+  <main>
+    <article>
+      <img
+        src="https://banner2.cleanpng.com/20171127/3d3/large-oranges-png-clipart-5a1c5d591eb703.6573302315118083451258.jpg"
+        alt=""
+      />
+      <div>
+        <h5>Mantén el orden de tus productos</h5>
+        <p>Gestión intuitiva de tus productos y finanzas</p>
+        <div class="flex flex-row m-4 items-center">
+          <button
+            type="button"
+            class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+            >Dark</button
+          >
+          <button
+            type="button"
+            class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >Light</button
+          >
+        </div>
+      </div>
+    </article>
+    <article>
+      <div>
+        <h5>En la tranquilidad de tu casa</h5>
+        <p>
+          Podrás revisar la actividad de tu negocio desde la comodidad de tu
+          casa
+        </p>
+        <div class="flex flex-row m-4 items-center">
+          <button
+            type="button"
+            class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+            >Dark</button
+          >
+          <button
+            type="button"
+            class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >Light</button
+          >
+        </div>
+      </div>
+      <img
+        src="https://banner2.cleanpng.com/20171127/3d3/large-oranges-png-clipart-5a1c5d591eb703.6573302315118083451258.jpg"
+        alt=""
+      />
+    </article>
+  </main>
+  <!-- <div class="index">
+    <center>
+      <h1>Welcome, {username}</h1>
+      <br />
+      <Button />
+    </center>
+    <div class="quote">
+      <center>
+        <span
+          >by <a href="https://zastinian.com">Zastinian</a>, <a href="https://github.com/Zastinian/Astro-Login">Github Code</a>, <a
+            href="https://twitter.com/Zastinian">Twitter</a
+          >.</span
+        >
+      </center>
+    </div>
+  </div> -->
+</Layout>
+
+<style>
+  article {
+    @apply flex flex-col m-10 items-center justify-evenly bg-white rounded-lg md:flex-row dark:bg-gray-800 dark:hover:bg-gray-700;
+  }
+
+  article > div {
+    @apply flex flex-col justify-between p-4 leading-normal;
+  }
+
+  article > img {
+    @apply object-cover rounded-2xl h-[400px] w-[400px] aspect-square;
+  }
+
+  h5 {
+    @apply mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white;
+  }
+
+  p {
+    @apply mb-3 text-2xl font-semibold text-gray-500 dark:text-gray-200;
+  }
+</style>

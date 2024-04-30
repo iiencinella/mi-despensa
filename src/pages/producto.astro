@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../layouts/Layout.astro";
+import Item from "../components/producto/item.astro";
+import Crud from "../components/producto/crud.astro";
+---
+
+<BaseLayout>
+  <div class="flex flex-row justify-evenly">
+    <section>
+      <p>Listado de Productos</p>
+      <section class="mt-3 grid grid-flow-row gap-2">
+        <Item />
+        <Item showAlert={true} />
+        <Item showAlert={true} />
+        <Item />
+        <Item />
+        <Item showAlert={true} />
+        <Item />
+        <Item />
+        <Item showAlert={true} />
+        <Item showAlert={true} />
+      </section>
+    </section>
+    <section>
+      <Crud />
+    </section>
+  </div>
+</BaseLayout>
