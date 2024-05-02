@@ -1,20 +1,28 @@
 ---
 interface Props {
-  showAlert?: boolean;
+  nombre: string;
+  codigo: number;
+  precio: number;
+  cantidad: number;
 }
 
-const { showAlert = false } = Astro.props;
+const { nombre, codigo, precio, cantidad } = Astro.props;
 ---
+
 <article>
-  <p>Producto</p>
-  <p>Stock</p>
-  {showAlert && (
-    <button
-      type="button"
-      class="animate-pulse focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-2xl text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-      >Alerta</button
-    >
-  )}
+  <p>{nombre}</p>
+  <p>{codigo}</p>
+  <p>$ {precio}</p>
+  {
+    cantidad === 0 && (
+      <button
+        type="button"
+        class="animate-pulse focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-2xl text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+      >
+        Alerta
+      </button>
+    )
+  }
 </article>
 
 <style>

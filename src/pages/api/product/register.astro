@@ -1,0 +1,22 @@
+---
+import { Product } from "astro:db";
+import { db } from "astro:db";
+
+if (Astro.request.method === "POST") {
+  const data: any = await Astro.request.formData();
+
+  const nombre: string = data.get("nombre");
+  const codigo: number = data.get("codigo");
+  const precio: number = data.get("precio");
+  const cantidad: number = data.get("cantidad");
+  
+  await db.insert(Product).values({
+    nombre,
+    codigo,
+    precio,
+    cantidad,
+  });
+
+  return Astro.redirect('/producto')
+}
+---
