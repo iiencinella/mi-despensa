@@ -1,16 +1,18 @@
 ---
-import loginSave from "@utils/login";
+import {login} from "@/src/utils/user";
 let token = "none";
 let redir = "/login";
 let cookieName = import.meta.env.COOKIE_NAME || "_Security_Login_";
 let maxAge = 604800;
 if (Astro.request.method === "POST") {
   const data = Object.fromEntries(new URLSearchParams(await Astro.request.text()));
-  const d = await loginSave(data.email, data.password, Number(import.meta.env.MAX_AGE || 604800));
+  const d = await login(data.email, data.password, Number(import.meta.env.MAX_AGE || 604800));
   if (d.success == true) {
     token = d?.token || "none";
     redir = "/";
     maxAge = d?.max || 604800;
+  } else {
+    return Astro.redirect("/login");
   }
 } else {
   return Astro.redirect("/login");
