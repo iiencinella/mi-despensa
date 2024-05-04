@@ -8,12 +8,13 @@ import Listado from "../components/producto/listado.astro";
 
 <BaseLayout>
   <div class="flex flex-row justify-evenly">
-    <Listado proveedor={true} />
+    <Listado />
     <div class="py-4 px-1">
-      <section class="pb-2">
+      <!-- <section class="pb-2">
+        Ver que se hace luego. Hay que asociar el producto con el proveedor
         <Details />
         <Contacto nombre="Nombre Proveedor" direccion="Direccion" telefono="1234567890" />
-      </section>
+      </section> -->
       <section class="pb-2">
         <Agenda />
       </section>

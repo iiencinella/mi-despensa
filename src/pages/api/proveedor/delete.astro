@@ -1,0 +1,15 @@
+---
+import { eq } from "astro:db";
+import { Proveedor } from "astro:db";
+import { db } from "astro:db";
+
+if (Astro.request.method === "POST") {
+  const data: any = await Astro.request.formData();
+
+  const nombre: string = data.get("nombre");
+
+  await db.delete(Proveedor).where(eq(Proveedor.nombre, nombre));
+
+  return Astro.redirect("/proveedores");
+}
+---
