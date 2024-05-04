@@ -8,8 +8,8 @@ import Listado from "../components/producto/listado.astro";
 
 <BaseLayout>
   <div class="flex flex-row justify-evenly">
-    <Listado />
-    <div class="px-2">
+    <Listado proveedor={true} />
+    <div class="py-4 px-1">
       <section class="pb-2">
         <Details />
         <Contacto nombre="Nombre" direccion="Direccion" telefono="1234567890" />

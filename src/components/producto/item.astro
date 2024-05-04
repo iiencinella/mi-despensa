@@ -4,9 +4,10 @@ interface Props {
   codigo: number;
   precio: number;
   cantidad: number;
+  proveedor: boolean;
 }
 
-const { nombre, codigo, precio, cantidad } = Astro.props;
+const { nombre, codigo, precio, cantidad, proveedor = false } = Astro.props;
 ---
 
 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -30,6 +31,18 @@ const { nombre, codigo, precio, cantidad } = Astro.props;
       )
     }
   </td>
+  {
+    proveedor && (
+      <td class="px-6 py-4">
+        <button
+          type="button"
+          class="animate-pulse focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-2xl text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900"
+        >
+          Ver
+        </button>
+      </td>
+    )
+  }
 </tr>
 
 <style>
