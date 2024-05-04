@@ -15,11 +15,20 @@ const Product = defineTable({
     nombre: column.text(),
     codigo: column.number(),
     precio: column.number(),
-    cantidad: column.number()
+    cantidad: column.number(),
+  }
+})
+
+const Proveedor = defineTable({
+  columns: {
+    id: column.number({primaryKey: true}),
+    nombre: column.text({unique: true}),
+    direccion: column.text(),
+    telefono_celular: column.text(),
   }
 })
 
 // https://astro.build/db/config
 export default defineDb({
-  tables: { User, Product },
+  tables: { User, Product, Proveedor },
 });

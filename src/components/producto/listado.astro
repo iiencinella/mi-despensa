@@ -1,0 +1,35 @@
+---
+import Item from "../../components/producto/item.astro";
+import { db, Product } from "astro:db";
+const listProduct = await db.select().from(Product);
+---
+
+<section class="relative overflow-x-auto mt-4 max-md:mx-4">
+  <table
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+  >
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3"> Nombre </th>
+        <th scope="col" class="px-6 py-3"> Código </th>
+        <th scope="col" class="px-6 py-3"> Precio Unitario </th>
+      </tr>
+    </thead>
+    <!-- Aqui se carga la lista -->
+    <tbody>
+      {
+        listProduct.length > 0 &&
+          listProduct.map((items) => (
+            <Item
+              nombre={items.nombre}
+              codigo={items.codigo}
+              precio={items.precio}
+              cantidad={items.cantidad}
+            />
+          ))
+      }
+    </tbody>
+  </table>
+</section>

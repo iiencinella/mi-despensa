@@ -1,34 +1,20 @@
 ---
 import BaseLayout from "../layouts/Layout.astro";
-import Item from "../components/producto/item.astro";
 import Details from "../components/producto/details.astro";
 import Contacto from '../components/proveedor/contacto.astro';
 import Agenda from '../components/proveedor/agenda.astro';
+import Listado from "../components/producto/listado.astro";
 ---
 
 <BaseLayout>
   <div class="flex flex-row justify-evenly">
-    <section>
-      <p>Listado de Productos</p>
-      <section class="mt-3 grid grid-flow-row gap-2">
-        <Item />
-        <Item showAlert={true} />
-        <Item showAlert={true} />
-        <Item />
-        <Item />
-        <Item showAlert={true} />
-        <Item />
-        <Item />
-        <Item showAlert={true} />
-        <Item showAlert={true} />
-      </section>
-    </section>
-    <div>
-      <section>
+    <Listado />
+    <div class="px-2">
+      <section class="pb-2">
         <Details />
-        <Contacto />
+        <Contacto nombre="Nombre" direccion="Direccion" telefono="1234567890" />
       </section>
-      <section>
+      <section class="pb-2">
         <Agenda />
       </section>
     </div>

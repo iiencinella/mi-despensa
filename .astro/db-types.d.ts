@@ -8,4 +8,8 @@ declare module 'astro:db' {
 		"Product",
 		{"id":{"type":"number","schema":{"unique":false,"deprecated":false,"name":"id","collection":"Product","primaryKey":true}},"nombre":{"type":"text","schema":{"unique":false,"deprecated":false,"name":"nombre","collection":"Product","primaryKey":false,"optional":false}},"codigo":{"type":"number","schema":{"unique":false,"deprecated":false,"name":"codigo","collection":"Product","primaryKey":false,"optional":false}},"precio":{"type":"number","schema":{"unique":false,"deprecated":false,"name":"precio","collection":"Product","primaryKey":false,"optional":false}},"cantidad":{"type":"number","schema":{"unique":false,"deprecated":false,"name":"cantidad","collection":"Product","primaryKey":false,"optional":false}}}
 	>;
+	export const Proveedor: import("@astrojs/db/runtime").Table<
+		"Proveedor",
+		{"id":{"type":"number","schema":{"unique":false,"deprecated":false,"name":"id","collection":"Proveedor","primaryKey":true}},"nombre":{"type":"text","schema":{"unique":true,"deprecated":false,"name":"nombre","collection":"Proveedor","primaryKey":false,"optional":false}},"direccion":{"type":"text","schema":{"unique":false,"deprecated":false,"name":"direccion","collection":"Proveedor","primaryKey":false,"optional":false}},"telefono_celular":{"type":"text","schema":{"unique":false,"deprecated":false,"name":"telefono_celular","collection":"Proveedor","primaryKey":false,"optional":false}}}
+	>;
 }
