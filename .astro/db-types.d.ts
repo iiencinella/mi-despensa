@@ -10,6 +10,6 @@ declare module 'astro:db' {
 	>;
 	export const Proveedor: import("@astrojs/db/runtime").Table<
 		"Proveedor",
-		{"id":{"type":"number","schema":{"unique":false,"deprecated":false,"name":"id","collection":"Proveedor","primaryKey":true}},"nombre":{"type":"text","schema":{"unique":true,"deprecated":false,"name":"nombre","collection":"Proveedor","primaryKey":false,"optional":false}},"direccion":{"type":"text","schema":{"unique":false,"deprecated":false,"name":"direccion","collection":"Proveedor","primaryKey":false,"optional":false}},"telefono_celular":{"type":"text","schema":{"unique":false,"deprecated":false,"name":"telefono_celular","collection":"Proveedor","primaryKey":false,"optional":false}}}
+		{"id":{"type":"number","schema":{"unique":false,"deprecated":false,"name":"id","collection":"Proveedor","primaryKey":true}},"nombre":{"type":"text","schema":{"unique":true,"deprecated":false,"name":"nombre","collection":"Proveedor","primaryKey":false,"optional":false}},"direccion":{"type":"text","schema":{"unique":false,"deprecated":false,"name":"direccion","collection":"Proveedor","primaryKey":false,"optional":false}},"telefono":{"type":"text","schema":{"unique":false,"deprecated":false,"name":"telefono","collection":"Proveedor","primaryKey":false,"optional":false}}}
 	>;
 }

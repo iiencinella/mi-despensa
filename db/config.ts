@@ -24,7 +24,7 @@ const Proveedor = defineTable({
     id: column.number({primaryKey: true}),
     nombre: column.text({unique: true}),
     direccion: column.text(),
-    telefono_celular: column.text(),
+    telefono: column.text(),
   }
 })
 

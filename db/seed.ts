@@ -9,6 +9,6 @@ export default async function seed() {
 		{ id: 1, nombre: 'Producto 1', codigo: '1', precio: 12, cantidad: 12 }
 	])
 	await db.insert(Proveedor).values([
-		{ id: 1, nombre: 'Proveedor 1', direccion: 'Francisco de Bueno 185 A', telefono_celular: '3434708954' }
+		{ id: 1, nombre: 'Proveedor 1', direccion: 'Francisco de Bueno 185 A', telefono: '3434708954' }
 	])
 }
