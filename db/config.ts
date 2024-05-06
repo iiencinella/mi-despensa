@@ -1,11 +1,13 @@
 import { column, defineDb, defineTable } from 'astro:db';
 
-const User = defineTable({
+const Usuario = defineTable({
   columns: {
     id: column.number({primaryKey: true}),
     alias: column.text(),
     pass: column.text(),
     role: column.text(),
+    nombre: column.text(),
+    logueado:column.boolean({default: false}),
   }
 })
 
@@ -30,5 +32,5 @@ const Proveedor = defineTable({
 
 // https://astro.build/db/config
 export default defineDb({
-  tables: { User, Product, Proveedor },
+  tables: { Usuario, Product, Proveedor },
 });
