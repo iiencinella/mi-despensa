@@ -1,0 +1,24 @@
+---
+import { eq } from "astro:db";
+import { Usuario } from "astro:db";
+import { db } from "astro:db";
+
+if (Astro.request.method === "POST") {
+  const data: any = await Astro.request.formData();
+
+  const usuario: string = data.get('alias');
+  const newPassword: string = data.get("password");
+  const confirmPass: string = data.get("resetPass");
+
+  if(newPassword !== confirmPass) {
+    return Astro.redirect('/configuracion');
+  }
+  else {
+    await db.update(Usuario).set({
+      pass: newPassword
+    }).where(eq(Usuario.alias, usuario));
+
+    return Astro.redirect('/logout');
+  }
+}
+---

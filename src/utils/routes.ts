@@ -1,17 +1,21 @@
-import { User, Product, db, eq } from "astro:db";
+import { Usuario, db, eq } from "astro:db";
 
 export function dbLogin(email: string, password: string) {
   let username: string | null = null;
   let role: string = 'caja';
   let success: boolean = false;
   return new Promise(async (resolve, reject) => {
-    const user = await db.select().from(User).where(eq(User.alias, email))
+    const user = await db.select().from(Usuario).where(eq(Usuario.alias, email))
 
     if (user.length > 0) {
-      if (user[0].pass === password) {
+      if (user[0].pass === password && !user[0].logueado) {
         success = true
-        username = 'Usuario Registrado'
+        username = user[0].nombre
         role = user[0].role
+
+        await db.update(Usuario)
+          .set({ logueado: true })
+          .where(eq(Usuario.alias, email))
       }
     }
     else {
@@ -30,6 +34,13 @@ export function dbLogin(email: string, password: string) {
         success = false;
       }
     }
-    resolve({success, username, role});
+    resolve({ success, username, role });
   });
+}
+
+export async function dbUnlogin(email: any) {
+  await db
+    .update(Usuario)
+    .set({ logueado: false })
+    .where(eq(Usuario.alias, email));
 }

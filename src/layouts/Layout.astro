@@ -14,7 +14,7 @@ let login: string = `${d.success}`;
 <html>
   <Head />
   <body>
-    <Navbar login={d.success} role={d.role} sesionPage={false} />
+    <Navbar login={d} sesionPage={false} />
     <input type="hidden" name="loginInput" id="loginInput" value={login} />
     <slot />
     <Footer />

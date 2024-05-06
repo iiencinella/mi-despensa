@@ -1,0 +1,111 @@
+---
+import { db } from "astro:db";
+import Layout from "../layouts/Layout.astro";
+import { Usuario } from "astro:db";
+import { eq } from "astro:db";
+import hasProfile from "../utils/profile";
+
+const cookie: string = `${Astro.cookies.get(import.meta.env.COOKIE_NAME || "_Security_Login_")?.value}`;
+const d = hasProfile(cookie);
+const loginAlias: string = d.email ? d.email : "";
+
+const usuario = await db
+  .select()
+  .from(Usuario)
+  .where(eq(Usuario.alias, loginAlias));
+---
+
+<Layout>
+  <div class="flex justify-center items-center w-full">
+    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+      <!-- Modal content -->
+      <div
+        class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5"
+      >
+        <!-- Modal header -->
+        <div
+          class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600"
+        >
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            Configuración de usuario
+          </h3>
+        </div>
+        <!-- Modal body -->
+        <form action="/api/user/update" accept-charset="UTF-8" method="POST">
+          <div class="grid gap-4 mb-4 sm:grid-cols-2">
+            <div>
+              <label
+                for="name"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Nombre</label
+              >
+              <input
+                type="text"
+                name="name"
+                id="name"
+                value={usuario[0].nombre}
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Nombre de usuario"
+                readonly=""
+              />
+            </div>
+            <div>
+              <label
+                for="alias"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Usuario</label
+              >
+              <input
+                type="text"
+                name="alias"
+                id="alias"
+                value={usuario[0].alias}
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Nombre de usuario"
+                readonly=""
+              />
+            </div>
+            <div>
+              <label
+                for="password"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Nueva contraseña</label
+              >
+              <input
+                type="password"
+                value=""
+                name="password"
+                id="password"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Nueva contraseña"
+              />
+            </div>
+            <div>
+              <label
+                for="resetPass"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Confirmar contraseña</label
+              >
+              <input
+                type="password"
+                value=""
+                name="resetPass"
+                id="resetPass"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Confirmar contraseña"
+              />
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <button
+              type="submit"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Actualizar Contraseña
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</Layout>

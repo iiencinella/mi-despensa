@@ -24,12 +24,6 @@ export const itemsMenu = [
     role: ['admin', 'caja']
   },
   {
-    item: 'Cerrar Sesión',
-    link: '/logout',
-    login: true,
-    role: ['all']
-  },
-  {
     item: 'Iniciar Sesión',
     link: '/login',
     login: false,
