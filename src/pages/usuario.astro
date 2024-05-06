@@ -45,7 +45,7 @@ const listado = await db.select().from(Usuario);
                 </th>
                 <td class="px-6 py-4"> {profile.alias} </td>
                 <td class="px-6 py-4"> {profile.role} </td>
-                <td class="px-6 py-4"> [Falta] </td>
+                <td class="px-6 py-4"> {profile.logueado ? 'Conectado': 'Desconectado'} </td>
                 <td class="px-6 py-4 text-right">
                   <a
                     href="#"
