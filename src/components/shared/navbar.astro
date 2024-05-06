@@ -2,7 +2,7 @@
 import { itemsMenu } from "../../data/itemMenu.data";
 import { metadata } from "../../data/meta.data";
 
-const { login, role, sesionPage = true } = Astro.props;
+const { login, sesionPage = true } = Astro.props;
 ---
 
 <nav>
@@ -46,14 +46,69 @@ const { login, role, sesionPage = true } = Astro.props;
           <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             {itemsMenu.map(
               (items) =>
-                items.login === login &&
-                (items.role.includes("all") || items.role.includes(role)) && (
+                items.login === login.success &&
+                (items.role.includes("all") ||
+                  items.role.includes(login.role)) && (
                   <li>
                     <a href={items.link} aria-current="page">
                       {items.item}
                     </a>
                   </li>
                 ),
+            )}
+            {login.success && (
+              <li>
+                <img
+                  id="avatarButton"
+                  data-dropdown-toggle="userDropdown"
+                  data-dropdown-placement="bottom-start"
+                  class="w-10 h-10 rounded-full cursor-pointer"
+                  src="/user.svg"
+                  alt="Usuario dropdown"
+                />
+
+                {/* <!-- Dropdown menu --> */}
+                <div
+                  id="userDropdown"
+                  class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+                >
+                  <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                    <div>{login.username}</div>
+                    <div class="font-medium truncate">{login.email}</div>
+                  </div>
+                  <ul
+                    class="py-2 px-4 text-sm text-gray-700 dark:text-gray-200"
+                    aria-labelledby="avatarButton"
+                  >
+                    {login.role === "admin" && (
+                      <li>
+                        <a
+                          href="/user"
+                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          Panel de usuarios
+                        </a>
+                      </li>
+                    )}
+                    <li>
+                      <a
+                        href="#"
+                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Configuración
+                      </a>
+                    </li>
+                  </ul>
+                  <div class="py-1">
+                    <a
+                      href="/logout"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    >
+                      Cerrar Sesión
+                    </a>
+                  </div>
+                </div>
+              </li>
             )}
           </ul>
         </div>
