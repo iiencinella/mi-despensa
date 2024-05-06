@@ -7,7 +7,7 @@ const Usuario = defineTable({
     pass: column.text(),
     role: column.text(),
     nombre: column.text(),
-    logueado:column.boolean({default: false}),
+    logueado: column.boolean({ default: false }),
   }
 })
 
