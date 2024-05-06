@@ -1,0 +1,22 @@
+---
+import { eq } from "astro:db";
+import { Usuario } from "astro:db";
+import { db } from "astro:db";
+
+if(Astro.request.method === 'POST') {
+  const data: any = await Astro.request.formData();
+
+  const id:string = data.get('id');
+
+  const usuario = await db.select().from(Usuario).where(eq(Usuario.id, id))
+
+  console.log(usuario);
+  const userUp = usuario[0].habilitado === false;
+
+  await db.update(Usuario).set({
+    habilitado: userUp
+  }).where(eq(Usuario.id, id));
+
+  return Astro.redirect('/usuario')
+}
+---

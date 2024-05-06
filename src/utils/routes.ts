@@ -8,7 +8,7 @@ export function dbLogin(email: string, password: string) {
     const user = await db.select().from(Usuario).where(eq(Usuario.alias, email))
 
     if (user.length > 0) {
-      if (user[0].pass === password && !user[0].logueado) {
+      if (user[0].pass === password && !user[0].logueado && user[0].habilitado) {
         success = true
         username = user[0].nombre
         role = user[0].role

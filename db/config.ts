@@ -2,18 +2,19 @@ import { column, defineDb, defineTable } from 'astro:db';
 
 const Usuario = defineTable({
   columns: {
-    id: column.number({primaryKey: true}),
+    id: column.number({ primaryKey: true }),
     alias: column.text(),
     pass: column.text(),
     role: column.text(),
     nombre: column.text(),
     logueado: column.boolean({ default: false }),
+    habilitado: column.boolean({ default: true }),
   }
 })
 
 const Product = defineTable({
   columns: {
-    id: column.number({primaryKey: true}),
+    id: column.number({ primaryKey: true }),
     nombre: column.text(),
     codigo: column.number(),
     precio: column.number(),
@@ -23,8 +24,8 @@ const Product = defineTable({
 
 const Proveedor = defineTable({
   columns: {
-    id: column.number({primaryKey: true}),
-    nombre: column.text({unique: true}),
+    id: column.number({ primaryKey: true }),
+    nombre: column.text({ unique: true }),
     direccion: column.text(),
     telefono: column.text(),
   }

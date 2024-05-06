@@ -3,61 +3,65 @@ import { db, Usuario } from "astro:db";
 import Layout from "../layouts/Layout.astro";
 
 const listado = await db.select().from(Usuario);
+
+console.log(listado)
 ---
 
 <Layout>
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table
-      class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
-    >
-      <caption
-        class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800"
+    <form action="api/user/uptime" accept-charset="UTF-8" method="POST">
+      <table
+        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
       >
-        Tus empleados en el sistema
-        <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
-          Aqui podrás gestionar los usuario que usarán los productos y acciones
-          del sistema
-        </p>
-      </caption>
-      <thead
-        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-      >
-        <tr>
-          <th scope="col" class="px-6 py-3"> Nombre </th>
-          <th scope="col" class="px-6 py-3"> Usuario </th>
-          <th scope="col" class="px-6 py-3"> Rol </th>
-          <th scope="col" class="px-6 py-3"> Logueado </th>
-          <th scope="col" class="px-6 py-3">
-            <span class="sr-only">Edit</span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          listado.length > 0 &&
-            listado.map((profile) => (
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  {profile.nombre}
-                </th>
-                <td class="px-6 py-4"> {profile.alias} </td>
-                <td class="px-6 py-4"> {profile.role} </td>
-                <td class="px-6 py-4"> {profile.logueado ? 'Conectado': 'Desconectado'} </td>
-                <td class="px-6 py-4 text-right">
-                  <a
-                    href="#"
-                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+        <caption
+          class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800"
+        >
+          Tus empleados en el sistema
+          <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
+            Aqui podrás gestionar los usuario que usarán los productos y acciones
+            del sistema
+          </p>
+        </caption>
+        <thead
+          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th scope="col" class="px-6 py-3"> Nombre </th>
+            <th scope="col" class="px-6 py-3"> Usuario </th>
+            <th scope="col" class="px-6 py-3"> Rol </th>
+            <th scope="col" class="px-6 py-3"> Logueado </th>
+            <th scope="col" class="px-6 py-3">
+              <span class="sr-only">Edit</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            listado.length > 0 &&
+              listado.map((profile) => (
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    Edit
-                  </a>
-                </td>
-              </tr>
-            ))
-        }
-      </tbody>
-    </table>
+                    {profile.nombre}
+                  </th>
+                  <td class="px-6 py-4"> {profile.alias} </td>
+                  <td class="px-6 py-4"> {profile.role} </td>
+                  <td class="px-6 py-4"> {profile.logueado ? 'Conectado': 'Desconectado'} </td>
+                  {/* <td class="px-6 py-4 text-right">
+                    <button
+                      type="submit"
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      {profile.habilitado ? 'Deshabilitar' : 'Habilitar'}
+                    </button>
+                  </td> */}
+                </tr>
+              ))
+          }
+        </tbody>
+      </table>
+    </form>
   </div>
 </Layout>
