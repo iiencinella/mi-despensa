@@ -1,6 +1,6 @@
 ---
 import { eq } from "astro:db";
-import { Product } from "astro:db";
+import { Producto } from "astro:db";
 import { db } from "astro:db";
 
 if (Astro.request.method === "POST") {
@@ -11,11 +11,11 @@ if (Astro.request.method === "POST") {
   const precio: number = data.get("precio");
   const cantidad: number = data.get("cantidad");
 
-  await db.update(Product).set({
+  await db.update(Producto).set({
     codigo,
     precio,
     cantidad
-  }).where(eq(Product.nombre, nombre));
+  }).where(eq(Producto.nombre, nombre));
 
   return Astro.redirect("/producto");
 }

@@ -26,7 +26,7 @@ export function dbLogin(email: string, password: string) {
         username = "Ususario Proveedor";
         role = 'proveedor';
       } else if (email === "producto@example.com" && password === "1234") {
-        username = "Usuario Producto";
+        username = "Usuario Productoo";
         role = 'producto';
       } else if (email === "cajas@example.com" && password === "1234") {
         username = "Usuario Cajas";
