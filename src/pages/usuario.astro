@@ -3,8 +3,6 @@ import { db, Usuario } from "astro:db";
 import Layout from "../layouts/Layout.astro";
 
 const listado = await db.select().from(Usuario);
-
-console.log(listado)
 ---
 
 <Layout>

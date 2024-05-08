@@ -10,7 +10,6 @@ if(Astro.request.method === 'POST') {
 
   const usuario = await db.select().from(Usuario).where(eq(Usuario.id, id))
 
-  console.log(usuario);
   const userUp = usuario[0].habilitado === false;
 
   await db.update(Usuario).set({
