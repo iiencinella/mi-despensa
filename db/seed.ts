@@ -1,10 +1,15 @@
-import { db, Producto, Proveedor, Usuario } from 'astro:db';
+import { db, Producto, Proveedor, Usuario, Negocio } from 'astro:db';
 
 // https://astro.build/db/seed
 export default async function seed() {
+	await db.insert(Negocio).values([
+		{ id: 1, nombre: 'Piensa Sencillo' },
+		{ id: 2, nombre: 'Mi Negocio' },
+	])
 	await db.insert(Usuario).values([
-		{ id: 1, alias: 'admin@midespensa.com.ar', pass: 'admin1234', role: 'admin', nombre: 'Usuario Administrador', habilitado: true },
-		{ id: 2, alias: 'cajas@midespensa.com.ar', pass: 'cajas1234', role: 'caja', nombre: 'Usuario de Cajas', habilitado: true },
+		{ id: 1, alias: 'admin@piensasencillo.com.ar', pass: 'admin1234', role: 'admin', nombre: 'Usuario Piensa Sencillo', negocio: 1 },
+		{ id: 2, alias: 'admin@midespensa.com.ar', pass: 'admin1234', role: 'admin', nombre: 'Usuario Administrador', negocio: 2 },
+		{ id: 3, alias: 'cajas@midespensa.com.ar', pass: 'cajas1234', role: 'caja', nombre: 'Usuario de Cajas', negocio: 2 },
 
 	])
 	await db.insert(Producto).values([

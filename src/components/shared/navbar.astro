@@ -13,7 +13,7 @@ const { login, sesionPage = true } = Astro.props;
       <img src={metadata.logoPage} class="h-8" alt="Flowbite Logo" />
       <span
         class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-        >{metadata.title}</span
+        >{login.negocio !== '' ? login.negocio : metadata.title}</span
       >
     </a>
     <button

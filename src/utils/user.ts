@@ -15,9 +15,10 @@ export async function login(email: string, password: string, maxAge: number) {
         email: email,
         username: getLoginData.username,
         role: getLoginData.role,
+        negocio: getLoginData.negocio,
       },
       "secret",
     );
-    return {success: true, token: `${token}`, max: maxAge};
+    return {success: true, token: `${token}`, max: maxAge, negocio: getLoginData.negocio};
   }
 }

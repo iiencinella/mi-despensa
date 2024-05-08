@@ -4,4 +4,5 @@ export interface profileType {
   username: string | null;
   iat: number;
   role: string;
+  negocio: string;
 }
