@@ -1,8 +1,16 @@
 ---
 import { db, Usuario } from "astro:db";
 import Layout from "../layouts/Layout.astro";
+import { eq } from "astro:db";
+import { Negocio } from "astro:db";
+import hasProfile from "../utils/profile";
 
-const listado = await db.select().from(Usuario);
+const cookie: string = `${Astro.cookies.get(import.meta.env.COOKIE_NAME || "_Security_Login_")?.value}`;
+const negocio: string = hasProfile(cookie).negocio;
+
+const idNegocio = await db.select().from(Negocio).where(eq(Negocio.nombre, negocio))
+
+const listado = await db.select().from(Usuario).where(eq(Usuario.negocio, idNegocio[0].id));
 ---
 
 <Layout>
