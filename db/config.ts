@@ -7,12 +7,20 @@ const Negocio = defineTable({
   }
 })
 
+const Rol = defineTable({
+  columns: {
+    id: column.number({ primaryKey: true }),
+    descripcion: column.text({ unique: true }),
+    dependencia: column.number(),
+  }
+})
+
 const Usuario = defineTable({
   columns: {
     id: column.number({ primaryKey: true }),
     alias: column.text(),
     pass: column.text(),
-    role: column.text(),
+    role: column.number({ references: () => Rol.columns.id }),
     nombre: column.text(),
     negocio: column.number({ references: () => Negocio.columns.id }),
     logueado: column.boolean({ default: false }),
@@ -41,5 +49,5 @@ const Proveedor = defineTable({
 
 // https://astro.build/db/config
 export default defineDb({
-  tables: { Usuario, Producto, Proveedor, Negocio },
+  tables: { Usuario, Producto, Proveedor, Negocio, Rol },
 });
