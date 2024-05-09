@@ -7,7 +7,6 @@ import { db } from "astro:db";
 
 if (Astro.request.method === "POST") {
   const data: any = await Astro.request.formData();
-  console.log(data)
 
   const name: string = data.get("name");
   const alias: string = data.get("alias");
