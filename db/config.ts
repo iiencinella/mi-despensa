@@ -1,19 +1,36 @@
 import { column, defineDb, defineTable } from 'astro:db';
 
-const Usuario = defineTable({
+const Negocio = defineTable({
   columns: {
-    id: column.number({primaryKey: true}),
-    alias: column.text(),
-    pass: column.text(),
-    role: column.text(),
-    nombre: column.text(),
-    logueado: column.boolean({ default: false }),
+    id: column.number({ primaryKey: true }),
+    nombre: column.text({ unique: true })
   }
 })
 
-const Product = defineTable({
+const Rol = defineTable({
   columns: {
-    id: column.number({primaryKey: true}),
+    id: column.number({ primaryKey: true }),
+    descripcion: column.text({ unique: true }),
+    dependencia: column.number(),
+  }
+})
+
+const Usuario = defineTable({
+  columns: {
+    id: column.number({ primaryKey: true }),
+    alias: column.text(),
+    pass: column.text(),
+    role: column.number({ references: () => Rol.columns.id }),
+    nombre: column.text(),
+    negocio: column.number({ references: () => Negocio.columns.id }),
+    logueado: column.boolean({ default: false }),
+    habilitado: column.boolean({ default: true }),
+  }
+})
+
+const Producto = defineTable({
+  columns: {
+    id: column.number({ primaryKey: true }),
     nombre: column.text(),
     codigo: column.number(),
     precio: column.number(),
@@ -23,8 +40,8 @@ const Product = defineTable({
 
 const Proveedor = defineTable({
   columns: {
-    id: column.number({primaryKey: true}),
-    nombre: column.text({unique: true}),
+    id: column.number({ primaryKey: true }),
+    nombre: column.text({ unique: true }),
     direccion: column.text(),
     telefono: column.text(),
   }
@@ -32,5 +49,5 @@ const Proveedor = defineTable({
 
 // https://astro.build/db/config
 export default defineDb({
-  tables: { Usuario, Product, Proveedor },
+  tables: { Usuario, Producto, Proveedor, Negocio, Rol },
 });

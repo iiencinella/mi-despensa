@@ -1,3 +1,10 @@
+---
+import { Proveedor } from "astro:db";
+import { db } from "astro:db";
+
+const listProveedor = await db.select().from(Proveedor);
+---
+
 <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
   <!-- Modal content -->
   <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
@@ -44,6 +51,34 @@
         </div>
         <div>
           <label
+            for="proveedor"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Proveedor</label
+          >
+          <input
+            type="text"
+            name="proveedor"
+            id="proveedor"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 hidden w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value=""
+          />
+          <select
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            onclick="OnSelected()"
+            onselect="OnSelected()"
+            onchange="OnSelected()"
+          >
+            <option selected>Seleccione el proveedor</option>
+            {
+              listProveedor.length > 0 &&
+                listProveedor.map((item) => (
+                  <option value={item.id}>{item.nombre}</option>
+                ))
+            }
+          </select>
+        </div>
+        <div>
+          <label
             for="precio"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >Precio Unitario</label
@@ -61,7 +96,7 @@
           <label
             for="cantidad"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >Disponible</label
+            >Stock</label
           >
           <input
             type="text"
@@ -171,3 +206,17 @@
     </form>
   </div>
 </div>
+
+<script is:inline>
+  function OnSelected() {
+    const options = document.querySelectorAll("option");
+    const proveedorTag = document.getElementById("proveedor");
+
+    options.every((element) => {
+      if (element.selected) {
+        proveedorTag.value = element.value;
+        return true;
+      }
+    });
+  }
+</script>

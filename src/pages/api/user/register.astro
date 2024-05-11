@@ -1,0 +1,32 @@
+---
+import { Rol } from "astro:db";
+import { Negocio } from "astro:db";
+import { eq } from "astro:db";
+import { Usuario } from "astro:db";
+import { db } from "astro:db";
+
+if (Astro.request.method === "POST") {
+  const data: any = await Astro.request.formData();
+
+  const name: string = data.get("name");
+  const alias: string = data.get("alias");
+  const busisness: string = data.get("busisness");
+  const role: string = data.get("role");
+  const password: string = data.get("password");
+  const confirmPassword: string = data.get("confirmPassword");
+
+  if (password === confirmPassword) {
+    const idRol = await db.select().from(Rol).where(eq(Rol.descripcion, role))
+    const idNegocio = await db.select().from(Negocio).where(eq(Negocio.nombre, busisness))
+    await db.insert(Usuario).values({
+      alias,
+      nombre: name,
+      role: idRol[0].id,
+      negocio: idNegocio[0].id,
+      pass: password,
+    })
+  } else {
+    return Astro.redirect("/usuario");
+  }
+}
+---

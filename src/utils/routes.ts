@@ -1,21 +1,29 @@
-import { Usuario, db, eq } from "astro:db";
+import { Negocio, Usuario, db, eq } from "astro:db";
 
 export function dbLogin(email: string, password: string) {
   let username: string | null = null;
   let role: string = 'caja';
   let success: boolean = false;
+  let negocio: string = 'Mi Negocio';
   return new Promise(async (resolve, reject) => {
     const user = await db.select().from(Usuario).where(eq(Usuario.alias, email))
 
     if (user.length > 0) {
-      if (user[0].pass === password && !user[0].logueado) {
+      if (user[0].pass === password && !user[0].logueado && user[0].habilitado) {
         success = true
         username = user[0].nombre
         role = user[0].role
 
-        await db.update(Usuario)
-          .set({ logueado: true })
-          .where(eq(Usuario.alias, email))
+        const usuarioNegocio = await db.select().from(Negocio).where(eq(Negocio.id, user[0].negocio))
+        console.log(usuarioNegocio)
+        
+        if (usuarioNegocio.length > 0) {
+          negocio = usuarioNegocio[0].nombre
+
+          await db.update(Usuario)
+            .set({ logueado: true })
+            .where(eq(Usuario.alias, email))
+        }
       }
     }
     else {
@@ -26,7 +34,7 @@ export function dbLogin(email: string, password: string) {
         username = "Ususario Proveedor";
         role = 'proveedor';
       } else if (email === "producto@example.com" && password === "1234") {
-        username = "Usuario Producto";
+        username = "Usuario Productoo";
         role = 'producto';
       } else if (email === "cajas@example.com" && password === "1234") {
         username = "Usuario Cajas";
@@ -34,7 +42,7 @@ export function dbLogin(email: string, password: string) {
         success = false;
       }
     }
-    resolve({ success, username, role });
+    resolve({ success, username, role, negocio });
   });
 }
 

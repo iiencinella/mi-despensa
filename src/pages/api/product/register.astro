@@ -1,5 +1,5 @@
 ---
-import { Product } from "astro:db";
+import { Producto } from "astro:db";
 import { db } from "astro:db";
 
 if (Astro.request.method === "POST") {
@@ -10,7 +10,7 @@ if (Astro.request.method === "POST") {
   const precio: number = data.get("precio");
   const cantidad: number = data.get("cantidad");
   
-  await db.insert(Product).values({
+  await db.insert(Producto).values({
     nombre,
     codigo,
     precio,
