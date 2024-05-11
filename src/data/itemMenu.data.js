@@ -3,25 +3,25 @@ export const itemsMenu = [
     item: 'Productos',
     link: '/producto',
     login: true,
-    role: ['admin', 'producto']
+    role: ['root', 'admin', 'producto']
   },
   {
     item: 'Proveedores',
     link: '/proveedores',
     login: true,
-    role: ['admin', 'proveedor']
+    role: ['root', 'admin', 'proveedor']
   },
   {
     item: 'Tesorería',
     link: '/tesoreria',
     login: true,
-    role: ['admin']
+    role: ['root', 'admin']
   },
   {
     item: 'Caja',
     link: '/caja',
     login: true,
-    role: ['admin', 'caja']
+    role: ['root', 'admin', 'cajero']
   },
   {
     item: 'Iniciar Sesión',
